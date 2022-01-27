@@ -48,17 +48,17 @@ Three volunteers to role-play and demonstrate a pipeline.
 
         $ echo "Nicolee" | grep -E 'e{2}'           # Match exactly 2 e's
 
-        $ echo "Nicolee" | grep -E '[eio]*'         # Match all i, o, e's
+        $ echo "Nicolee" | grep -E '[eio]*'         # Match any e, i, o's
 
-        $ echo "Nicolee" | grep -E '[eio]+'         # Match one or more of i, o, e's
+        $ echo "Nicolee" | grep -E '[eio]+'         # Match one or more of e, i, o
 
-        $ echo "Nicolee" | grep -E '[^eio]+'        # Match everything but E or A
+        $ echo "Nicolee" | grep -E '[^eio]+'        # Match everything but e, i, o
 
         $ echo "Nicolee" | grep -E '^N'             # Match start
 
         $ echo "Nicolee" | grep -E 'e$'             # Match end
 
-        $ echo "Nicolei" | grep -E '(i).*\1'          # Match with group references
+        $ echo "Nicolei" | grep -E '(i).*\1'        # Match with group references
 
 # Regular Expressions: Examples
 
