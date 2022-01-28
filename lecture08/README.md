@@ -90,7 +90,7 @@ Three volunteers to role-play and demonstrate a pipeline.
 
 3. Extract all the "Assistant" positions
 
-        $ curl -sL "http://yld.me/d51B"| grep -Eo '[^>]*+Assistant[^<]*' | sort
+        $ curl -sL https://yld.me/d51B | grep -Eo '[^>]*+Assistant[^<]*' | sort
 
 # Activity: CSE Curriculum
 
