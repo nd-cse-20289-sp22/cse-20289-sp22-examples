@@ -70,11 +70,11 @@ Three volunteers to role-play and demonstrate a pipeline.
 
 4. Words that don't start with a vowel                  ^[^aeiou]
 
-5. All words with two consecutive vowels                [aeiou]t
+5. All words with two consecutive vowels                [aeiou]{2}
 
 6. All words with two consecutive letters (same)        (.)\1
 
-7. All words that begin and end with the same letter    ^([a-z]).*\1$
+7. All words that begin and end with the same letter    ^(.).*\1$
 
 8. All words with exactly 2 of r, s, or t               '^[^rst]*[rst][^rst]*[rst][^rst]*$'
 
