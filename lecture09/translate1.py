@@ -9,3 +9,10 @@ for line in open('/etc/passwd'):
         count += 1
 
 print(count)
+
+# Alternative
+
+import csv
+
+users = csv.reader(open('/etc/passwd'), delimiter=':')
+print(sum(1 for user in users if user[0].endswith('d')))
