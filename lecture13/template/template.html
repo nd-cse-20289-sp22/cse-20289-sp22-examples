@@ -1,0 +1,13 @@
+<html>
+    <head></head>
+    <body>
+         {% if name %}		    <!--// We can do conditionals -->
+         <b>Hello, {{ name }}</b>   <!--// We can substitute values -->
+         {% end %}
+         <h1>Enter Your Name</h1>
+         <form>
+            <input type="text" name="name" value="{{ name }}">
+            <input type="submit" value="Echo!">
+         </form>
+     </body>
+</html>
