@@ -1,0 +1,18 @@
+<html>
+    <head>
+	<title>eyeFone XP</title>
+    </head>
+    <body>
+	<h1>eyeFone XP</h1>
+        <form method="post">
+	    <input type="password" name="pin">
+            <input type="submit" value="Unlock">
+	</div>
+    	</form>
+	{% if pin and pin == code %}
+	<b style="color: green">Unlock: Success!</b>
+	{% elif pin and pin != code %}
+	<b style="color: red">Unlock: Failure!</b>
+	{% end %}
+    </body>
+</html>
