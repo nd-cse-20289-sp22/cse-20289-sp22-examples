@@ -1,0 +1,28 @@
+CC=		gcc
+CFLAGS=		-Wall -std=gnu99 -g
+LD=		gcc
+LDFLAGS=	-L. 
+LIBS=		-lgreet
+AR=		ar
+ARFLAGS=	rcs
+TARGETS=	greet.dynamic greet.static
+
+all:		$(TARGETS)
+
+%.o:		%.c
+	$(CC) $(CFLAGS) -fPIC -c -o $@ $^
+
+libgreet.so:	library.o
+	$(LD) -shared -o $@ $^
+
+libgreet.a:	library.o
+	$(AR) $(ARFLAGS) $@ $^
+
+greet.dynamic:	main.o libgreet.so
+	$(LD) $(LDFLAGS) -o $@ $< $(LIBS)
+
+greet.static:	main.o libgreet.a
+	$(LD) $(LDFLAGS) -static -o $@ $< $(LIBS)
+
+clean:
+	rm -f $(TARGETS) *.o libgreet.*

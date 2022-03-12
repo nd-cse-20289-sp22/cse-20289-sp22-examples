@@ -1,0 +1,54 @@
+TARGETS=	hello.exe hello.dynamic hello.static greet.dynamic greet.static
+
+all:		$(TARGETS)
+
+# Stages
+
+hello_.c:	hello.c
+	@echo "Preprocessing..."
+	cpp hello.c > hello_.c
+
+hello.s:	hello_.c
+	@echo "Compiling..."
+	gcc -o hello.s -S hello_.c
+
+hello.o:	hello.s
+	@echo "Assembling..."
+	as -o hello.o hello.s
+
+hello.exe:	hello.o
+	@echo "Linking..."
+	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o hello.exe /usr/lib64/crt1.o /usr/lib64/crti.o hello.o -lc /usr/lib64/crtn.o
+
+clean:
+	rm -f $(TARGETS) *.s *.o *_.c lib*.so lib*.a
+
+# Dynamic vs Static Executables
+
+hello.dynamic:	hello.o
+	@echo "Dynamic linking..."
+	gcc -o hello.dynamic hello.o
+
+hello.static:	hello.o
+	@echo "Static linking..."
+	gcc -static -o  hello.static hello.o
+
+# Shared vs Static Libraries
+
+library.o:	library.c
+	gcc -std=gnu99 -Wall -c -fPIC -o library.o library.c
+
+main.o:		main.c
+	gcc -std=gnu99 -Wall -c -o main.o main.c
+
+libgreet.so:	library.o
+	gcc -shared -o libgreet.so library.o
+
+libgreet.a:	library.o
+	ar rcs libgreet.a library.o
+
+greet.dynamic:	main.o libgreet.so
+	gcc -L. -o greet.dynamic main.o -lgreet
+
+greet.static:	main.o libgreet.a
+	gcc -L. -static -o greet.static main.o -lgreet
